@@ -1,5 +1,5 @@
-# Sample lab 3 Makefile for SP 2024
-# Your name goes here or you get a zero.
+# Lab4 makefile
+# Edited by: Elijah Paulman
 
 CFLAGS= -std=c99 -pedantic -Wformat -Wreturn-type 
 all:  tags headers lab3
@@ -19,14 +19,39 @@ tags: *.c
 	gcc $(CFLAGS) -g -c $< -o $@
 
 
-lab3: lab3.o callbacks.o memory.o bits.o input.o physics.o sim.o output.o n2.o
+lab4: lab4.o callbacks.o memory.o bits.o input.o physics.o sim.o output.o n2.o
 	gcc -g -o $@ $^  -L. -lbtp -lncurses -lm -llinkedlist
 
 
 # Prototypes go here
+p1: p1.o 
+	gcc -g -o $@ $^ -L. -lm -lbtp -lncurses
+
+p2: p2.o 
+	gcc -g -o $@ $^ -L. -lm -lbtp -lncurses
+
+p3: p3.o 
+	gcc -g -o $@ $^ -L. -lm -lbtp -lncurses
+
+p4: p4.o bits.o
+	gcc -g -o p4 p4.o bits.o -L. -lm -lbtp -lncurses
+
+p4.o: p4.c
+	gcc -std=c99 -pedantic -Wformat -Wreturn-type -g -c p4.c -o p4.o
 
 
 # Zip target goes here.  
 # If it doesn't self test lab3, your lab is late.
-
+lab4.zip: makefile *.c *.h README_LAB4 n2.o libbtp.a liblinkedlist.a
+	zip $@ $^
+# self test lab3
+	rm -rf install
+# create install folder
+	mkdir install
+# unzip lab3.zip into install folder
+	unzip lab3.zip -d install
+# make everything being graded
+	make -C install -r lab3
+# remove install folder
+	rm -rf install
 
