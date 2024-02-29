@@ -1,5 +1,8 @@
 /* Elijah Paulman */
 
+/*
+    Prototype 1 tests inserting into a linked list.
+*/
 #include <stdio.h>
 #include <stdlib.h>
 

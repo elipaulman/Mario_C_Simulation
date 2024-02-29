@@ -22,7 +22,7 @@
 #include "sim.h"
 
 // include our own file last
-#include "lab3.h"
+#include "lab4.h"
 
 
 

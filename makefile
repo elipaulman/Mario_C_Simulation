@@ -2,7 +2,7 @@
 # Edited by: Elijah Paulman
 
 CFLAGS= -std=c99 -pedantic -Wformat -Wreturn-type 
-all:  tags headers lab3
+all:  tags headers lab4
 
 
 headers: *.c tags
@@ -41,17 +41,17 @@ p4.o: p4.c
 
 
 # Zip target goes here.  
-# If it doesn't self test lab3, your lab is late.
+# If it doesn't self test lab4, your lab is late.
 lab4.zip: makefile *.c *.h README_LAB4 n2.o libbtp.a liblinkedlist.a
 	zip $@ $^
-# self test lab3
+# self test lab4
 	rm -rf install
 # create install folder
 	mkdir install
-# unzip lab3.zip into install folder
-	unzip lab3.zip -d install
+# unzip lab4.zip into install folder
+	unzip lab4.zip -d install
 # make everything being graded
-	make -C install -r lab3
+	make -C install -r lab4
 # remove install folder
 	rm -rf install
 
