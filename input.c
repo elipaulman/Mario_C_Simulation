@@ -24,6 +24,8 @@
 
 #include "input.h"
 
+#define ERR (-1)
+
 // checks for valid input
 bool valid_input(unsigned short code)
 {

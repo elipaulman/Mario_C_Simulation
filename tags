@@ -17,6 +17,7 @@ CriteriaFunction	linkedlist.h	/^typedef bool (* CriteriaFunction)(void *data, vo
 CriteriaFunction	p4.c	/^typedef bool (* CriteriaFunction)(void *data, void *helper);$/;"	t	file:
 DEBUG	debug.h	16;"	d
 DELTA_TIME	constants.h	4;"	d
+ERR	input.c	27;"	d	file:
 FLAG_LIMIT	physics.c	25;"	d	file:
 G	physics.c	26;"	d	file:
 GRAPHICS	debug.h	14;"	d
@@ -27,8 +28,9 @@ Node	node.h	/^	}Node;$/;"	t	typeref:struct:Node
 Node	node.h	/^typedef struct Node{$/;"	s
 NumericFunction	libll.h	/^typedef double (* NumericFunction)(void *data);$/;"	t
 NumericFunction	linkedlist.h	/^typedef double (* NumericFunction)(void *data);$/;"	t
-RVAL_BAD_INIT	lab4.c	29;"	d	file:
-RVAL_BAD_INPUT	lab4.c	30;"	d	file:
+RVAL_BAD_ARGS	lab4.c	32;"	d	file:
+RVAL_BAD_INIT	lab4.c	30;"	d	file:
+RVAL_BAD_INPUT	lab4.c	31;"	d	file:
 Sim	structs.h	/^struct Sim$/;"	s
 TEXT	debug.h	13;"	d
 Thing	p1.c	/^struct Thing {$/;"	s	file:
@@ -91,6 +93,8 @@ get_jump_V	bits.c	/^unsigned int get_jump_V(unsigned short code)$/;"	f
 get_score	sim.c	/^int get_score(struct Buckeye *brutus)$/;"	f
 good_input	input.c	/^bool good_input(struct Sim *world)$/;"	f
 good_parity	bits.c	/^static bool good_parity(unsigned short code)$/;"	f	file:
+handle_args	lab4.c	/^bool handle_args(int argc, char *argv[], bool *bonus)$/;"	f
+handle_file	lab4.c	/^bool handle_file(char *filename, struct Sim *world)$/;"	f
 init	lab4.c	/^bool init()$/;"	f
 insert	linkedlist.c	/^bool insert(void **p2head, void *data, ComparisonFunction goesInFrontOf, int text) $/;"	f
 insert	p1.c	/^void insert(struct Thing *newnode, struct Thing **p2p2change) {$/;"	f
@@ -103,7 +107,7 @@ jump_message	output.c	/^void jump_message(struct Buckeye *brutus)$/;"	f
 jump_velocity	structs.h	/^	double x_position, y_position, x_velocity, y_velocity, jump_velocity;$/;"	m	struct:Buckeye
 loot	structs.h	/^	int color, loot;$/;"	m	struct:Buckeye
 loot_message	output.c	/^void loot_message(struct Buckeye *brutus)$/;"	f
-main	lab4.c	/^int main()$/;"	f
+main	lab4.c	/^int main(int argc, char *argv[])$/;"	f
 main	p1.c	/^int main() {$/;"	f
 main	p2.c	/^int main(int argc, char *argv[]) {$/;"	f
 main	p2.h	/^int main(int argc, char *argv[]) {;$/;"	f
