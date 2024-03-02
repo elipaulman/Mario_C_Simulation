@@ -15,33 +15,33 @@ typedef struct Node
 static int nodeCount = 0;
 
 // creates a new node
-static Node* allocate_node(void *data) 
+static Node* allocate_node(void *data, int text) 
 {
     Node* newNode = (Node*)malloc(sizeof(Node));
     if(newNode == NULL) 
     {
-        printf("DIAGNOSTIC: Node allocation failed.\n");
+        if(text)printf("DIAGNOSTIC: Node allocation failed.\n");
         return NULL;
     }
     newNode->data = data;
     newNode->next = NULL;
     nodeCount++;
-    printf("DIAGNOSTIC: %d nodes allocated.\n", nodeCount);
+    if(text)printf("DIAGNOSTIC: %d nodes allocated.\n", nodeCount);
     return newNode;
 }
 
 // frees a node
-static void free_node(Node *node) 
+static void free_node(Node *node, int text) 
 {
     free(node);
     nodeCount--;
-    printf("DIAGNOSTIC: %d nodes freed.\n", nodeCount);
+    if(text)printf("DIAGNOSTIC: %d nodes freed.\n", nodeCount);
 }
 
 // inserts a new node into the linked list
 bool insert(void **p2head, void *data, ComparisonFunction goesInFrontOf, int text) 
 {
-    Node *newNode = allocate_node(data);
+    Node *newNode = allocate_node(data, text);
     if (newNode == NULL) 
     {
         return false;
@@ -98,7 +98,7 @@ int deleteSome(void **p2head, CriteriaFunction mustGo, void *helper, ActionFunct
             holder = *p2p2change;
             *p2p2change = (*p2p2change)->next;
             disposal(holder->data);
-            free_node(holder);
+            free_node(holder, text);
             count++;
         } else 
         {
