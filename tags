@@ -17,8 +17,8 @@ CriteriaFunction	linkedlist.h	/^typedef bool (* CriteriaFunction)(void *data, vo
 CriteriaFunction	p4.c	/^typedef bool (* CriteriaFunction)(void *data, void *helper);$/;"	t	file:
 DEBUG	debug.h	16;"	d
 DELTA_TIME	constants.h	4;"	d
-FLAG_LIMIT	physics.c	24;"	d	file:
-G	physics.c	25;"	d	file:
+FLAG_LIMIT	physics.c	25;"	d	file:
+G	physics.c	26;"	d	file:
 GRAPHICS	debug.h	14;"	d
 JUMP_VELOCITY	subscripts.h	8;"	d
 Node	linkedlist.c	/^typedef struct Node $/;"	s	file:

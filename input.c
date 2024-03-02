@@ -1,5 +1,6 @@
 
 /* Copyright 2023, Neil Kirby.  Not for disclosure without permission */
+/* Edited by Elijah Paulman*/
 
 // put system shared libraries first - they are unlikely to have bugs.
 #include <stdio.h>
@@ -19,10 +20,11 @@
 #include "output.h"
 #include "bits.h"
 #include "physics.h"
-#include "sim.h"	// TODO: remove this later
+#include "sim.h"
 
 #include "input.h"
 
+// checks for valid input
 bool valid_input(unsigned short code)
 {
 	if(is_coin(code))return valid_coin(code);
@@ -31,6 +33,7 @@ bool valid_input(unsigned short code)
 	return false;
 }
 
+// deals with input
 bool good_input(struct Sim *world)
 {
 	int tokens;

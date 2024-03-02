@@ -1,6 +1,7 @@
 
 
 /* Copyright 2024, Neil Kirby.  Not for disclosure without permission */
+/* Edtied by Elijah Paulman */
 
 // put system shared libraries first - they are unlikely to have bugs.
 #include <stdio.h>
@@ -17,42 +18,49 @@
 #include "bits.h"
 
 
-
+// gets color
 unsigned int get_color(unsigned short code)
 {
 	return ( code >> 12 & 0x7);
 }
 
+// gets jump velocity
 unsigned int get_jump_V(unsigned short code)
 {
 	return ( (code >> 8) & 0xF);
 }
 
+// gets x velocity
 unsigned int get_VX(unsigned short code)
 {
 	return ( (code >> 4) & 0xF);
 }
 
+// gets coin x position
 unsigned int get_coin_X(unsigned short code)
 {
 	return ( (code >> 8) & 0xF);
 }
 
+// gets coin y position
 unsigned int get_coin_Y(unsigned short code)
 {
 	return ( (code >> 4) & 0xF);
 }
 
+// returns true if brutus
 bool is_brutus(unsigned short code)
 {
 	return ( code & 1);
 }
 
+// returns true if coin
 bool is_coin(unsigned short code)
 {
 	return !( code & 1);
 }
 
+// checks parity
 static bool good_parity(unsigned short code)
 {
 
@@ -71,6 +79,7 @@ static bool good_parity(unsigned short code)
 	return x ==0;
 }
 
+// returns true if valid coin
 bool valid_coin(unsigned short code)
 {
 	if(DEBUG)printf("valid coin:\n    validating color...\n");
@@ -79,6 +88,7 @@ bool valid_coin(unsigned short code)
 	return good_parity(code);
 }
 
+// returns true if valid brutus
 bool valid_brutus(unsigned short code)
 {
 	if(DEBUG)printf("valid brutus:\n    validating color...\n");

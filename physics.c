@@ -1,5 +1,6 @@
 
-// COpyright 2024 Neil Kirby
+// Copyright 2024 Neil Kirby
+/* Edtied by Elijah Paulman */
 // Not for distribution without permission
 
 // list < > style headers first
@@ -24,6 +25,7 @@
 #define FLAG_LIMIT (13.25)
 #define G ( -10.0 )
 
+// true if close enough to collect
 bool close_enough( double x1, double y1, double x2, double y2)
 {
 	double dx = x1-x2;
@@ -33,6 +35,7 @@ bool close_enough( double x1, double y1, double x2, double y2)
 
 }
 
+// true if the mascot is left of the flag
 bool is_left_of_flag(void *data, void *helper)
 {
 	struct Buckeye *brutus = data;
@@ -40,6 +43,7 @@ bool is_left_of_flag(void *data, void *helper)
 
 }
 
+// basic motion of brutus
 static void basic_motion(struct Buckeye *brutus)
 {
 
@@ -49,6 +53,7 @@ static void basic_motion(struct Buckeye *brutus)
 	brutus->y_velocity += G * DELTA_TIME;
 }
 
+// adjusts brutus position
 static void make_adjustments(struct Buckeye *brutus)
 {
 	double XA = btp_X_adjustment(brutus->x_position, brutus->y_position);
@@ -59,6 +64,7 @@ static void make_adjustments(struct Buckeye *brutus)
 	if(YA != 0.0) brutus->y_velocity = 0.0;
 }
 
+// checks for floor and ceiling
 static void floor_and_ceiling(double oldVY, struct Buckeye *brutus)
 {
 	if((oldVY != 0.0) && (brutus->y_velocity == 0.0))
@@ -71,6 +77,7 @@ static void floor_and_ceiling(double oldVY, struct Buckeye *brutus)
 
 }
 
+// jumps brutus if needed
 static void maybe_jump(double oldX, double oldY, struct Buckeye*brutus)
 {
 	// I didn't move, I have to jump.
@@ -82,6 +89,7 @@ static void maybe_jump(double oldX, double oldY, struct Buckeye*brutus)
 
 }
 
+// moves brutus
 static void move_brutus(void * data)
 {
 	struct Buckeye *brutus = data;
@@ -101,6 +109,7 @@ static void move_brutus(void * data)
 	}
 }
 	
+// moves all mascots
 void move_everyone(struct Sim *world)
 {
 	iterate(world->mascots, move_brutus);

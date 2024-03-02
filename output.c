@@ -1,4 +1,5 @@
 // Copyright 2024 Neil Kirby
+/* Edited by Elijah Paulman */
 // Not for distribution without permission
 
 // Include < > style headers first:
@@ -21,13 +22,14 @@
 #include "output.h"
 
 
-
+// draw coin
 static void draw_coin(void * data)
 {
 	struct Coin *cash = data;
 	btp_coin( cash->color, cash->x_position, cash->y_position);
 }
 
+// draw brutus
 static void draw_brutus(void * data)
 {
 	struct Buckeye *brutus = data;
@@ -35,6 +37,7 @@ static void draw_brutus(void * data)
 		brutus->x_position, brutus->y_position, true);
 }
 
+// draw the world
 static void master_draw(struct Sim *world)
 {
 
@@ -49,6 +52,7 @@ static void master_draw(struct Sim *world)
 	microsleep( (unsigned int) (DELTA_TIME * 1000000));
 }
 
+// print coin
 static void print_coin (void * data)
 {
 	struct Coin *cash = data;
@@ -58,6 +62,7 @@ static void print_coin (void * data)
 
 }
 
+// print brutus
 static void print_brutus (void * data)
 {
 	struct Buckeye *brutus = data;
@@ -71,6 +76,7 @@ static void print_brutus (void * data)
 
 }
 
+// print the world
 static void master_print(struct Sim *world)
 {
 	// do the header, then brutus
@@ -83,6 +89,7 @@ printf(
 	iterate(world->coins, print_coin);
 }
 
+// draw the world
 static void final_draw (struct Sim *world)
 {
 	double delay = 0.0;
@@ -93,6 +100,7 @@ static void final_draw (struct Sim *world)
 	}
 }
 	
+// print the world
 void final_output(struct Sim *world)
 {
 	if(GRAPHICS)
@@ -105,13 +113,14 @@ void final_output(struct Sim *world)
 	}
 }
 
+// master output
 void master_output(struct Sim *world)
 {
 	if(GRAPHICS)master_draw(world);
 	if(TEXT)master_print(world);
 }
 
-// messages
+// flag message
 void flag_message(struct Buckeye *brutus)
 {
 	if(GRAPHICS)
@@ -123,6 +132,8 @@ void flag_message(struct Buckeye *brutus)
 	    printf("\nBrutus makes it to the flag!\n");
 	}
 }
+
+// loot message
 void loot_message(struct Buckeye *brutus)
 {
 	if(TEXT)printf("Brutus finds loot at %8.5lf, %8.5lf\n",
@@ -130,6 +141,7 @@ void loot_message(struct Buckeye *brutus)
 	if(GRAPHICS)btp_status("Brutus finds some loot");
 }
 
+// ceiling message
 void ceiling_message(struct Buckeye *brutus)
 {
 	if(TEXT)printf("Brutus hits the ceiling at %8.5lf, %8.5lf\n",
@@ -138,6 +150,7 @@ void ceiling_message(struct Buckeye *brutus)
 
 }
 
+// floor message
 void floor_message(struct Buckeye *brutus)
 {
 	if(TEXT)printf("Brutus hits the floor at %8.5lf, %8.5lf\n",
@@ -146,6 +159,7 @@ void floor_message(struct Buckeye *brutus)
 
 }
 
+// jump message
 void jump_message(struct Buckeye *brutus)
 {
 	if(TEXT)printf("Brutus jumps at %8.5lf, %8.5lf\n",
@@ -154,12 +168,13 @@ void jump_message(struct Buckeye *brutus)
 
 }
 
-
+// output for bad bits
 void output_bad_bits(unsigned short code)
 {
 	if(TEXT)printf("ERROR: invalid input: hex %X\n", code);
 }
 
+// output for scanf
 void output_scanf(int tokens)
 {
 	if(TEXT)printf("scanf returned %d\n", tokens);

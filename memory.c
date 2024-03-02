@@ -1,5 +1,6 @@
 
-// COpyright 2024 Neil Kirby
+// Copyright 2024 Neil Kirby
+/* Edited by Elijah Paulman */
 // Not for distribution without permission
 
 // list < > style headers first
@@ -13,6 +14,7 @@
 // include our own file last
 #include "memory.h"
 
+// allocates memory for a struct
 void *allocate_struct(int size)
 {
 	static int objects = 0;
@@ -35,6 +37,7 @@ void *allocate_struct(int size)
 
 }
 
+// frees memory for a struct
 void free_struct(void *thing)
 {
 	static int count = 0;

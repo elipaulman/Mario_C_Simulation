@@ -1,4 +1,5 @@
-// COpyright 2024 Neil Kirby
+// Copyright 2024 Neil Kirby
+/* Edited by Elijah Paulman */
 // Not for distribution without permission
 
 // list < > style headers first
@@ -26,6 +27,7 @@
 // include our own file last
 #include "sim.h"
 
+// returns true if coin color matches mascot color
 bool my_coin(void *data, void *helper)
 {
 	struct Coin *cp = data;
@@ -38,6 +40,8 @@ bool my_coin(void *data, void *helper)
 	    );
 
 }
+
+// sweeps coins
 void sweep(void *data)
 {
 	struct Buckeye *brutus = data;
@@ -52,11 +56,13 @@ void sweep(void *data)
 	}
 }
 
+// collects coins
 void collect_coins(struct Sim *world)
 {
 	iterate(world->mascots, sweep);
 }
 
+// gets score for mascot
 int get_score(struct Buckeye *brutus)
 {
 	int score = brutus->loot;
@@ -71,11 +77,13 @@ int get_score(struct Buckeye *brutus)
 	return score;
 }
 
+// keeps game on if any mascot left of flag
 static bool game_on(struct Sim *world)
 {
 	return( any(world->mascots, is_left_of_flag, NULL));
 }
 
+// clears a list
 void clear_a_list(void *avp, char *name)
 {
 	int d = 0;
@@ -85,12 +93,14 @@ void clear_a_list(void *avp, char *name)
 	if(TEXT)printf("     %d %s deleted.\n", d, name);
 }
 
+// clears masscot and coins list
 void clear_lists(struct Sim *world)
 {
 	clear_a_list(&world->mascots, "mascots");
 	clear_a_list(&world->coins, "coins");
 }
 
+// runs simulation
 void run_sim(struct Sim *world)
 {
 	while(game_on(world))
@@ -107,6 +117,7 @@ void run_sim(struct Sim *world)
 	clear_lists(world);
 }
 
+// fills coin list
 static void fill_coin(unsigned short code, struct Coin *cash)
 {
 	cash->x_position = 0.5 + get_coin_X(code);
@@ -114,6 +125,7 @@ static void fill_coin(unsigned short code, struct Coin *cash)
 	cash->color = get_color(code);
 }
 
+// fills brutus list
 static void fill_brutus(struct Sim *world, unsigned short code, struct Buckeye *brutus)
 {
 	// start at (0.5, 0.5)
@@ -127,6 +139,7 @@ static void fill_brutus(struct Sim *world, unsigned short code, struct Buckeye *
 	brutus->world = world;
 }
 
+// deals with coin 
 static void deal_with_coin(unsigned short code, struct Sim *world)
 {
 	struct Coin *cash;
@@ -142,6 +155,7 @@ static void deal_with_coin(unsigned short code, struct Sim *world)
 
 }
 
+// deals with brutus
 static void deal_with_brutus(unsigned short code, struct Sim *world)
 {
 	struct Buckeye *brutus;
@@ -157,6 +171,7 @@ static void deal_with_brutus(unsigned short code, struct Sim *world)
 
 }
 
+// deals with input
 void deal_with_input(unsigned short code, struct Sim *world)
 {
 	if(is_coin(code)) deal_with_coin(code, world);
