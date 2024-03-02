@@ -39,7 +39,7 @@ X_POSITION	subscripts.h	4;"	d
 X_VELOCITY	subscripts.h	6;"	d
 Y_POSITION	subscripts.h	5;"	d
 Y_VELOCITY	subscripts.h	7;"	d
-allocate_node	linkedlist.c	/^static Node* allocate_node(void *data) $/;"	f	file:
+allocate_node	linkedlist.c	/^static Node* allocate_node(void *data, int text) $/;"	f	file:
 allocate_struct	memory.c	/^void *allocate_struct(int size)$/;"	f
 always_true	callbacks.c	/^bool always_true(void *data, void *helper)$/;"	f
 any	linkedlist.c	/^bool any(void *head, CriteriaFunction yes, void *helper) $/;"	f
@@ -80,7 +80,7 @@ final_output	output.c	/^void final_output(struct Sim *world)$/;"	f
 flag_message	output.c	/^void flag_message(struct Buckeye *brutus)$/;"	f
 floor_and_ceiling	physics.c	/^static void floor_and_ceiling(double oldVY, struct Buckeye *brutus)$/;"	f	file:
 floor_message	output.c	/^void floor_message(struct Buckeye *brutus)$/;"	f
-free_node	linkedlist.c	/^static void free_node(Node *node) $/;"	f	file:
+free_node	linkedlist.c	/^static void free_node(Node *node, int text) $/;"	f	file:
 free_struct	memory.c	/^void free_struct(void *thing)$/;"	f
 game_on	sim.c	/^static bool game_on(struct Sim *world)$/;"	f	file:
 get_VX	bits.c	/^unsigned int get_VX(unsigned short code)$/;"	f

@@ -47,7 +47,7 @@ bool insert(void **p2head, void *data, ComparisonFunction goesInFrontOf, int tex
         return false;
     }
 
-    Node **p2p2change = p2head;
+    Node **p2p2change = (Node**)p2head;
     while(*p2p2change != NULL && (*p2p2change)->data < newNode->data) 
     {
         p2p2change = &((*p2p2change)->next);
@@ -87,7 +87,7 @@ bool any(void *head, CriteriaFunction yes, void *helper)
 // deletes nodes that meet the criteria
 int deleteSome(void **p2head, CriteriaFunction mustGo, void *helper, ActionFunction disposal, int text) 
 {
-    Node **p2p2change = p2head;
+    Node **p2p2change = (Node**)p2head;
     Node *holder;
     int count = 0;
 
