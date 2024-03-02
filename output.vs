@@ -1,5 +1,3 @@
-/* Elijah Paulman */
-
 void ceiling_message(struct Buckeye *brutus);
 void final_output(struct Sim *world);
 void flag_message(struct Buckeye *brutus);

@@ -1,5 +1,3 @@
-/* Elijah Paulman */
-
 unsigned int get_VX(unsigned short code);
 unsigned int get_coin_X(unsigned short code);
 unsigned int get_coin_Y(unsigned short code);

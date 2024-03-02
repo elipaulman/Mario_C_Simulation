@@ -1,5 +1,3 @@
-/* Elijah Paulman */
-
 void clear_a_list(void *avp, char *name);
 void clear_lists(struct Sim *world);
 void collect_coins(struct Sim *world);

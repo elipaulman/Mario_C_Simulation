@@ -19,7 +19,7 @@ tags: *.c
 	gcc $(CFLAGS) -g -c $< -o $@
 
 
-lab4: lab4.o callbacks.o memory.o bits.o input.o physics.o sim.o output.o n2.o
+lab4: lab4.o callbacks.o memory.o bits.o input.o physics.o sim.o output.o n2.o 
 	gcc -g -o $@ $^  -L. -lbtp -lncurses -lm -llinkedlist
 
 
