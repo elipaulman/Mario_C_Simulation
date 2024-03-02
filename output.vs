@@ -7,3 +7,4 @@ void loot_message(struct Buckeye *brutus);
 void master_output(struct Sim *world);
 void output_bad_bits(unsigned short code);
 void output_scanf(int tokens);
+const char* team(int color);

@@ -25,8 +25,12 @@ void *allocate_struct(int size)
 	    objects++;
 	    if(TEXT)
 	    {
-    printf("DIAGNOSTIC: allocation #%d allocated %d bytes\n", objects, size);
+    		printf("DIAGNOSTIC: allocation #%d allocated %d bytes\n", objects, size);
 	    }
+		if(DEBUG)
+        {
+            printf("DEBUG: memory: allocated pointer is %p\n", ptr);
+        }
 
 	}
 	else
@@ -41,6 +45,11 @@ void *allocate_struct(int size)
 void free_struct(void *thing)
 {
 	static int count = 0;
+
+	if(DEBUG)
+    {
+        printf("DEBUG: memory: about to free %p\n", thing);
+    }
 
 	free(thing);
 	count++;

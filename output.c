@@ -21,6 +21,12 @@
 // include the header file for this file as the very last include
 #include "output.h"
 
+// returns color of brutus
+const char* team(int color) 
+{
+    static const char* colors[] = {"Black", "Red", "Green", "Yellow", "Blue", "Magenta", "Cyan", "White"};
+    return colors[color];
+}
 
 // draw coin
 static void draw_coin(void * data)
@@ -55,25 +61,23 @@ static void master_draw(struct Sim *world)
 // print coin
 static void print_coin (void * data)
 {
-	struct Coin *cash = data;
+    struct Coin *cash = data;
 
-	printf("%d    (%8.5lf, %8.5lf)\n",
-	    cash->color, cash->x_position, cash->y_position);
-
+    printf("%7s (%8.5lf, %8.5lf)\n",
+        team(cash->color), cash->x_position, cash->y_position);
 }
 
 // print brutus
 static void print_brutus (void * data)
 {
-	struct Buckeye *brutus = data;
+    struct Buckeye *brutus = data;
 
-	printf("%3d    %d    (%8.5lf, %8.5lf)    (%9.5lf, %9.5lf)\n",
-	    get_score(brutus), brutus->color, 
-	    brutus->x_position,
-	    brutus->y_position,
-	    brutus->x_velocity,
-	    brutus->y_velocity);
-
+    printf("%3d %7s (%8.5lf, %8.5lf) (%9.5lf, %9.5lf)\n",
+        get_score(brutus), team(brutus->color), 
+        brutus->x_position,
+        brutus->y_position,
+        brutus->x_velocity,
+        brutus->y_velocity);
 }
 
 // print the world
@@ -123,49 +127,70 @@ void master_output(struct Sim *world)
 // flag message
 void flag_message(struct Buckeye *brutus)
 {
-	if(GRAPHICS)
-	{
-	    btp_status("Brutus makes it to the flag");
-	}
-	if(TEXT)
-	{
-	    printf("\nBrutus makes it to the flag!\n");
-	}
+    if(GRAPHICS)
+    {
+        btp_status("Brutus makes it to the flag");
+    }
+    if(TEXT)
+    {
+        printf("%s Brutus makes it to the flag!\n", team(brutus->color));
+    }
 }
 
 // loot message
 void loot_message(struct Buckeye *brutus)
 {
-	if(TEXT)printf("Brutus finds loot at %8.5lf, %8.5lf\n",
-		brutus->x_position, brutus->y_position);
-	if(GRAPHICS)btp_status("Brutus finds some loot");
+    if(TEXT)
+    {
+        printf("%s Brutus finds loot at %8.5lf, %8.5lf\n",
+            team(brutus->color), brutus->x_position, brutus->y_position);
+    }
+    if(GRAPHICS)
+    {
+        btp_status("Brutus finds some loot");
+    }
 }
 
 // ceiling message
 void ceiling_message(struct Buckeye *brutus)
 {
-	if(TEXT)printf("Brutus hits the ceiling at %8.5lf, %8.5lf\n",
-		brutus->x_position, brutus->y_position);
-	if(GRAPHICS)btp_status("Brutus hits the ceiling");
-
+    if(TEXT)
+    {
+        printf("%s Brutus hits the ceiling at %8.5lf, %8.5lf\n",
+            team(brutus->color), brutus->x_position, brutus->y_position);
+    }
+    if(GRAPHICS)
+    {
+        btp_status("Brutus hits the ceiling");
+    }
 }
 
 // floor message
 void floor_message(struct Buckeye *brutus)
 {
-	if(TEXT)printf("Brutus hits the floor at %8.5lf, %8.5lf\n",
-		brutus->x_position, brutus->y_position);
-	if(GRAPHICS)btp_status("Brutus hits the floor");
-
+    if(TEXT)
+    {
+        printf("%s Brutus hits the floor at %8.5lf, %8.5lf\n",
+            team(brutus->color), brutus->x_position, brutus->y_position);
+    }
+    if(GRAPHICS)
+    {
+        btp_status("Brutus hits the floor");
+    }
 }
 
 // jump message
 void jump_message(struct Buckeye *brutus)
 {
-	if(TEXT)printf("Brutus jumps at %8.5lf, %8.5lf\n",
-		brutus->x_position, brutus->y_position);
-	if(GRAPHICS)btp_status("Brutus jumps");
-
+    if(TEXT)
+    {
+        printf("%s Brutus jumps at %8.5lf, %8.5lf\n",
+            team(brutus->color), brutus->x_position, brutus->y_position);
+    }
+    if(GRAPHICS)
+    {
+        btp_status("Brutus jumps");
+    }
 }
 
 // output for bad bits

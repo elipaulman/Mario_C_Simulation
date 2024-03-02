@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdbool.h>
 
+#include "debug.h"
 #include "linkedlist.h"
 
 typedef struct Node 
@@ -13,11 +14,12 @@ typedef struct Node
 } Node;
 
 static int nodeCount = 0;
+static int freedCount = 0;
 
 // creates a new node
 static Node* allocate_node(void *data, int text) 
 {
-    Node* newNode = (Node*)malloc(sizeof(Node));
+    Node *newNode = (Node*)malloc(sizeof(Node));
     if(newNode == NULL) 
     {
         if(text)printf("DIAGNOSTIC: Node allocation failed.\n");
@@ -27,15 +29,18 @@ static Node* allocate_node(void *data, int text)
     newNode->next = NULL;
     nodeCount++;
     if(text)printf("DIAGNOSTIC: %d nodes allocated.\n", nodeCount);
+    if(DEBUG)printf("DEBUG: linkedlist: allocated pointer is %p\n", (void*)newNode);
     return newNode;
 }
 
 // frees a node
 static void free_node(Node *node, int text) 
 {
+    if(DEBUG)printf("DEBUG: linkedlist: about to free %p\n", (void*)node);
     free(node);
     nodeCount--;
-    if(text)printf("DIAGNOSTIC: %d nodes freed.\n", nodeCount);
+    freedCount++;
+    if(text)printf("DIAGNOSTIC: %d nodes freed.\n", freedCount);
 }
 
 // inserts a new node into the linked list

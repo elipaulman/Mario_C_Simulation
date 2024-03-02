@@ -11,7 +11,7 @@
 
 #define VERBOSE 0	/* 1: all messages, 0: only required mesages */
 #define TEXT (! GRAPHICS)	/* do not change */
-#define GRAPHICS 1	/* 1 for graphics and no text, 0 for text only */
+#define GRAPHICS 0	/* 1 for graphics and no text, 0 for text only */
 
 #define DEBUG (VERBOSE && TEXT)	/* do not change this */
 

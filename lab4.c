@@ -93,23 +93,17 @@ bool handle_file(char *filename, struct Sim *world)
 
     if(TEXT) printf("DIAGNOSTIC: Successfully opened %s for reading.\n", filename);
 
-    unsigned short code;
-    while(fscanf(file, "%hx", &code) == 1)
-    {
-        if(valid_input(code) == false)
-        {
-            output_bad_bits(code);
-            fclose(file);
-            if(TEXT) printf("DIAGNOSTIC: Input file closed.\n");
-            return false;
-        }
-        deal_with_input(code, world);
-    }
+    // Pass the file to good_input
+    bool result = good_input(file, world);
 
-    fclose(file);
+    if(fclose(file) == EOF)
+    {
+        printf("ERROR: failed to close Input file.\n");
+        return false;
+    }
     if(TEXT) printf("DIAGNOSTIC: Input file closed.\n");
 
-    return true;
+    return result;
 }
 
 
@@ -128,12 +122,13 @@ int main(int argc, char *argv[])
     {
         return RVAL_BAD_ARGS;
     }
-	if( init())
-	{
-	    struct Sim ohio = {NULL, NULL, 0.0}, *world = &ohio;
+    if( init())
+    {
+        struct Sim ohio = {NULL, NULL, 0.0}, *world = &ohio;
 
-		if(!handle_file(argv[1], world) || !good_input(world))         
-		{
+        // Remove the call to good_input here
+        if(!handle_file(argv[1], world))         
+        {
             rval = RVAL_BAD_INPUT;
         }
         else 
@@ -141,8 +136,8 @@ int main(int argc, char *argv[])
             run_sim(world);
         }
 
-	    teardown();
-	}
+        teardown();
+    }
 	else
 	{
 	    rval = RVAL_BAD_INIT;	// non zero, indicates an error

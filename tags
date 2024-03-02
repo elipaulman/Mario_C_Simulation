@@ -84,6 +84,7 @@ floor_and_ceiling	physics.c	/^static void floor_and_ceiling(double oldVY, struct
 floor_message	output.c	/^void floor_message(struct Buckeye *brutus)$/;"	f
 free_node	linkedlist.c	/^static void free_node(Node *node, int text) $/;"	f	file:
 free_struct	memory.c	/^void free_struct(void *thing)$/;"	f
+freedCount	linkedlist.c	/^static int freedCount = 0;$/;"	v	file:
 game_on	sim.c	/^static bool game_on(struct Sim *world)$/;"	f	file:
 get_VX	bits.c	/^unsigned int get_VX(unsigned short code)$/;"	f
 get_coin_X	bits.c	/^unsigned int get_coin_X(unsigned short code)$/;"	f
@@ -91,7 +92,7 @@ get_coin_Y	bits.c	/^unsigned int get_coin_Y(unsigned short code)$/;"	f
 get_color	bits.c	/^unsigned int get_color(unsigned short code)$/;"	f
 get_jump_V	bits.c	/^unsigned int get_jump_V(unsigned short code)$/;"	f
 get_score	sim.c	/^int get_score(struct Buckeye *brutus)$/;"	f
-good_input	input.c	/^bool good_input(struct Sim *world)$/;"	f
+good_input	input.c	/^bool good_input(FILE* file, struct Sim *world)$/;"	f
 good_parity	bits.c	/^static bool good_parity(unsigned short code)$/;"	f	file:
 handle_args	lab4.c	/^bool handle_args(int argc, char *argv[], bool *bonus)$/;"	f
 handle_file	lab4.c	/^bool handle_file(char *filename, struct Sim *world)$/;"	f
@@ -141,6 +142,7 @@ std	makefile	/^	gcc -std=c99 -pedantic -Wformat -Wreturn-type -g -c p4.c -o p4.o
 str	p3.c	/^    char* str;$/;"	m	struct:Thing	file:
 str	p4.c	/^    char* str;$/;"	m	struct:Thing	file:
 sweep	sim.c	/^void sweep(void *data)$/;"	f
+team	output.c	/^const char* team(int color) $/;"	f
 teardown	lab4.c	/^void teardown()$/;"	f
 valid_brutus	bits.c	/^bool valid_brutus(unsigned short code)$/;"	f
 valid_coin	bits.c	/^bool valid_coin(unsigned short code)$/;"	f

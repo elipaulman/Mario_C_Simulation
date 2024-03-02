@@ -36,28 +36,26 @@ bool valid_input(unsigned short code)
 }
 
 // deals with input
-bool good_input(struct Sim *world)
+bool good_input(FILE* file, struct Sim *world)
 {
-	int tokens;
-	unsigned short code;
+    int tokens;
+    unsigned short code;
 
-
-	while( 1 ==(tokens = scanf("%hx", &code )))
-	{
-	    if(valid_input(code)) 
-	    {
-	    	deal_with_input(code, world);
-	    }
-	    else
-	    {
-	    	output_bad_bits(code);
-		return(false);
-	    }
-
-	}
-	output_scanf(tokens);
-	return( tokens == EOF);
-
+    // Use fscanf to read from the file
+    while( 1 ==(tokens = fscanf(file, "%hx", &code )))
+    {
+        if(valid_input(code)) 
+        {
+            deal_with_input(code, world);
+        }
+        else
+        {
+            output_bad_bits(code);
+            return(false);
+        }
+    }
+    output_scanf(tokens);
+    return( tokens == EOF);
 }
 
 /* the lab 4 bonus code will have more input routines. */
