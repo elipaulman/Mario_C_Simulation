@@ -144,15 +144,21 @@ static void deal_with_coin(unsigned short code, struct Sim *world)
 {
 	struct Coin *cash;
 
+	if(DEBUG)printf("DEBUG: sim: trying to allocate %s coin\n", team(get_color(code)));
 	if( cash = allocate_struct(sizeof(struct Coin)))
 	{
 	    fill_coin(code, cash);
+		if(DEBUG)printf("DEBUG: sim: trying to insert %s coin\n", team(get_color(code)));
 	    if(!insert(&world->coins, cash, coin_color_order, TEXT))
 	    {
-	    	// I need to free that 
+			if(DEBUG)printf("DEBUG: sim: freeing %s coin\n", team(get_color(code)));
+	    	 free_struct(cash);
 	    }
 	}
-
+	else
+	{
+		if(DEBUG)printf("DEBUG: sim: unable to allocate %s coin\n", team(get_color(code)));
+	}
 }
 
 // deals with brutus
@@ -160,15 +166,21 @@ static void deal_with_brutus(unsigned short code, struct Sim *world)
 {
 	struct Buckeye *brutus;
 
+	if(DEBUG)printf("DEBUG: sim: trying to allocate %s mascot\n", team(get_color(code)));
 	if( brutus = allocate_struct(sizeof(struct Buckeye)))
 	{
 	    fill_brutus(world, code, brutus);
+		if(DEBUG)printf("DEBUG: sim: trying to insert %s mascot\n", team(get_color(code)));
 	    if(!insert(&world->mascots, brutus, brutus_Y_order, TEXT))
 	    {
-	    	// I need to free that 
+			if(DEBUG)printf("DEBUG: sim: freeing %s mascot\n", team(get_color(code)));
+	    	free_struct(brutus);
 	    }
 	}
-
+	else
+	{
+		if(DEBUG)printf("DEBUG: sim: unable to allocate %s mascot\n", team(get_color(code)));
+	}
 }
 
 // deals with input

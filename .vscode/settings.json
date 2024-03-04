@@ -1,5 +1,9 @@
 {
     "files.associations": {
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "altmem.h": "c",
+        "array": "c",
+        "string": "c",
+        "linkedlist.h": "c"
     }
 }

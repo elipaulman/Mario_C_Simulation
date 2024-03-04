@@ -63,7 +63,7 @@ static void print_coin (void * data)
 {
     struct Coin *cash = data;
 
-    printf("%7s (%8.5lf, %8.5lf)\n",
+    printf("%7s    (%8.5lf, %8.5lf)\n",
         team(cash->color), cash->x_position, cash->y_position);
 }
 
@@ -72,7 +72,7 @@ static void print_brutus (void * data)
 {
     struct Buckeye *brutus = data;
 
-    printf("%3d %7s (%8.5lf, %8.5lf) (%9.5lf, %9.5lf)\n",
+    printf("%3d %10s    (%8.5lf, %8.5lf)    (%9.5lf, %9.5lf)\n",
         get_score(brutus), team(brutus->color), 
         brutus->x_position,
         brutus->y_position,
@@ -86,10 +86,11 @@ static void master_print(struct Sim *world)
 	// do the header, then brutus
 	
 printf(
-    "\nPts    C    (__X_____, __Y_____)    (__VX_____, __VY_____) ET=%8.5lf\n",
+    "\nPts       Team    (__X_____, __Y_____)    (__VX_____, __VY_____) ET=%8.5lf\n",
     world->elapsed);
+    
     	iterate(world->mascots, print_brutus);
-	printf( "\nC    (__X_____, __Y_____)\n" );
+	printf( "\n   Team    (__X_____, __Y_____)\n" );
 	iterate(world->coins, print_coin);
 }
 
@@ -133,7 +134,7 @@ void flag_message(struct Buckeye *brutus)
     }
     if(TEXT)
     {
-        printf("%s Brutus makes it to the flag!\n", team(brutus->color));
+        printf("\n%s Brutus makes it to the flag!\n", team(brutus->color));
     }
 }
 

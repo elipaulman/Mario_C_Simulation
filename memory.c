@@ -9,6 +9,7 @@
 
 // includ3 constants and structs next
 #include "debug.h"
+#include "altmem.h"
 
 
 // include our own file last
@@ -20,7 +21,7 @@ void *allocate_struct(int size)
 	static int objects = 0;
 	void *ptr;
 
-	if( ptr = malloc(size))
+	if( ptr = alternative_malloc(size))
 	{
 	    objects++;
 	    if(TEXT)
@@ -35,7 +36,7 @@ void *allocate_struct(int size)
 	}
 	else
 	{
-	    if(TEXT)printf("ERROR: failed to allocate %d bytes.\n", size);
+	    if(TEXT)printf("ERROR: memory: failed to allocate %d bytes.\n", size);
 	}
 	return ptr;
 
@@ -51,7 +52,7 @@ void free_struct(void *thing)
         printf("DEBUG: memory: about to free %p\n", thing);
     }
 
-	free(thing);
+	alternative_free(thing);
 	count++;
 	if(TEXT)printf("DIAGNOSTIC: %d objects freed\n", count);
 }

@@ -54,7 +54,8 @@ void printList(struct Thing* head)
     printf("NULL\n");
 }
 
-struct Thing* createNode(char* str) {
+struct Thing* createNode(char* str) 
+{
     struct Thing* newNode = (struct Thing*)malloc(sizeof(struct Thing));
     newNode->str = str;
     newNode->next = NULL;

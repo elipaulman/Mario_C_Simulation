@@ -1,6 +1,6 @@
 
 // Copyright 2024 Neil Kirby
-/* Edtied by Elijah Paulman */
+/* Edited by Elijah Paulman */
 // Not for distribution without permission
 
 // list < > style headers first

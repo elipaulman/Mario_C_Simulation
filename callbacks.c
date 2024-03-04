@@ -34,7 +34,7 @@ bool brutus_Y_order(void *data1, void * data2)
 {
 	struct Buckeye *b1 = data1, *b2 = data2;
 
-	return( b1->y_position > b2->y_position);
+	return( b1->y_position >= b2->y_position);
 }
 
 

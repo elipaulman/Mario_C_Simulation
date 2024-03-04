@@ -22,20 +22,20 @@ FLAG_LIMIT	physics.c	25;"	d	file:
 G	physics.c	26;"	d	file:
 GRAPHICS	debug.h	14;"	d
 JUMP_VELOCITY	subscripts.h	8;"	d
-Node	linkedlist.c	/^typedef struct Node $/;"	s	file:
+Node	linkedlist.c	/^typedef struct Node$/;"	s	file:
 Node	linkedlist.c	/^} Node;$/;"	t	typeref:struct:Node	file:
 Node	node.h	/^	}Node;$/;"	t	typeref:struct:Node
 Node	node.h	/^typedef struct Node{$/;"	s
 NumericFunction	libll.h	/^typedef double (* NumericFunction)(void *data);$/;"	t
 NumericFunction	linkedlist.h	/^typedef double (* NumericFunction)(void *data);$/;"	t
-RVAL_BAD_ARGS	lab4.c	32;"	d	file:
-RVAL_BAD_INIT	lab4.c	30;"	d	file:
-RVAL_BAD_INPUT	lab4.c	31;"	d	file:
+RVAL_BAD_ARGS	lab4.c	33;"	d	file:
+RVAL_BAD_INIT	lab4.c	31;"	d	file:
+RVAL_BAD_INPUT	lab4.c	32;"	d	file:
 Sim	structs.h	/^struct Sim$/;"	s
 TEXT	debug.h	13;"	d
-Thing	p1.c	/^struct Thing {$/;"	s	file:
+Thing	p1.c	/^struct Thing $/;"	s	file:
 Thing	p3.c	/^struct Thing $/;"	s	file:
-Thing	p4.c	/^struct Thing {$/;"	s	file:
+Thing	p4.c	/^struct Thing $/;"	s	file:
 VERBOSE	debug.h	12;"	d
 X_POSITION	subscripts.h	4;"	d
 X_VELOCITY	subscripts.h	6;"	d
@@ -44,9 +44,8 @@ Y_VELOCITY	subscripts.h	7;"	d
 allocate_node	linkedlist.c	/^static Node* allocate_node(void *data, int text) $/;"	f	file:
 allocate_struct	memory.c	/^void *allocate_struct(int size)$/;"	f
 always_true	callbacks.c	/^bool always_true(void *data, void *helper)$/;"	f
-any	linkedlist.c	/^bool any(void *head, CriteriaFunction yes, void *helper) $/;"	f
-any	p4.c	/^bool any(struct Thing *head, CriteriaFunction yes, void *helper) {$/;"	f
-any	p4.h	/^bool any(struct Thing *head, CriteriaFunction yes, void *helper) {;$/;"	f
+any	linkedlist.c	/^bool any(void *head, CriteriaFunction yes, void *helper)$/;"	f
+any	p4.c	/^bool any(struct Thing *head, CriteriaFunction yes, void *helper) $/;"	f
 basic_motion	physics.c	/^static void basic_motion(struct Buckeye *brutus)$/;"	f	file:
 brutus_Y_order	callbacks.c	/^bool brutus_Y_order(void *data1, void * data2)$/;"	f
 brutus_score_order	callbacks.c	/^bool brutus_score_order(void *data1, void * data2)$/;"	f
@@ -60,17 +59,15 @@ collect_coins	sim.c	/^void collect_coins(struct Sim *world)$/;"	f
 color	structs.h	/^	int color, loot;$/;"	m	struct:Buckeye
 color	structs.h	/^	int color;$/;"	m	struct:Coin
 compareStrings	p3.c	/^bool compareStrings(void *data1, void *data2) $/;"	f
-createNode	p1.c	/^struct Thing* createNode(int dval) {$/;"	f
-createNode	p1.h	/^struct Thing* createNode(int dval) {;$/;"	f
-createNode	p3.c	/^struct Thing* createNode(char* str) {$/;"	f
-createNode	p3.h	/^struct Thing* createNode(char* str) {;$/;"	f
-createNode	p4.c	/^struct Thing* createNode(char* str) {$/;"	f
+createNode	p1.c	/^struct Thing* createNode(int dval) $/;"	f
+createNode	p3.c	/^struct Thing* createNode(char* str) $/;"	f
+createNode	p4.c	/^struct Thing* createNode(char* str) $/;"	f
 data	linkedlist.c	/^    void *data;$/;"	m	struct:Node	file:
 data	node.h	/^	void *data;$/;"	m	struct:Node
 deal_with_brutus	sim.c	/^static void deal_with_brutus(unsigned short code, struct Sim *world)$/;"	f	file:
 deal_with_coin	sim.c	/^static void deal_with_coin(unsigned short code, struct Sim *world)$/;"	f	file:
 deal_with_input	sim.c	/^void deal_with_input(unsigned short code, struct Sim *world)$/;"	f
-deleteSome	linkedlist.c	/^int deleteSome(void **p2head, CriteriaFunction mustGo, void *helper, ActionFunction disposal, int text) $/;"	f
+deleteSome	linkedlist.c	/^int deleteSome(void *p2head, CriteriaFunction mustGo, void *helper, ActionFunction disposal, int text)$/;"	f
 draw_brutus	output.c	/^static void draw_brutus(void * data)$/;"	f	file:
 draw_coin	output.c	/^static void draw_coin(void * data)$/;"	f	file:
 dval	p1.c	/^    int dval;$/;"	m	struct:Thing	file:
@@ -84,7 +81,6 @@ floor_and_ceiling	physics.c	/^static void floor_and_ceiling(double oldVY, struct
 floor_message	output.c	/^void floor_message(struct Buckeye *brutus)$/;"	f
 free_node	linkedlist.c	/^static void free_node(Node *node, int text) $/;"	f	file:
 free_struct	memory.c	/^void free_struct(void *thing)$/;"	f
-freedCount	linkedlist.c	/^static int freedCount = 0;$/;"	v	file:
 game_on	sim.c	/^static bool game_on(struct Sim *world)$/;"	f	file:
 get_VX	bits.c	/^unsigned int get_VX(unsigned short code)$/;"	f
 get_coin_X	bits.c	/^unsigned int get_coin_X(unsigned short code)$/;"	f
@@ -97,23 +93,22 @@ good_parity	bits.c	/^static bool good_parity(unsigned short code)$/;"	f	file:
 handle_args	lab4.c	/^bool handle_args(int argc, char *argv[], bool *bonus)$/;"	f
 handle_file	lab4.c	/^bool handle_file(char *filename, struct Sim *world)$/;"	f
 init	lab4.c	/^bool init()$/;"	f
-insert	linkedlist.c	/^bool insert(void **p2head, void *data, ComparisonFunction goesInFrontOf, int text) $/;"	f
-insert	p1.c	/^void insert(struct Thing *newnode, struct Thing **p2p2change) {$/;"	f
-isMatch	p4.c	/^bool isMatch(void *data, void *helper) {$/;"	f
+insert	linkedlist.c	/^bool insert(void *p2head, void *data, ComparisonFunction goesInFrontOf, int text)$/;"	f
+insert	p1.c	/^void insert(struct Thing *newnode, struct Thing **p2p2change) $/;"	f
+isMatch	p4.c	/^bool isMatch(void *data, void *helper) $/;"	f
 is_brutus	bits.c	/^bool is_brutus(unsigned short code)$/;"	f
 is_coin	bits.c	/^bool is_coin(unsigned short code)$/;"	f
 is_left_of_flag	physics.c	/^bool is_left_of_flag(void *data, void *helper)$/;"	f
-iterate	linkedlist.c	/^void iterate(void *head, ActionFunction doThis) $/;"	f
+iterate	linkedlist.c	/^void iterate(void *head, ActionFunction doThis)$/;"	f
 jump_message	output.c	/^void jump_message(struct Buckeye *brutus)$/;"	f
 jump_velocity	structs.h	/^	double x_position, y_position, x_velocity, y_velocity, jump_velocity;$/;"	m	struct:Buckeye
 loot	structs.h	/^	int color, loot;$/;"	m	struct:Buckeye
 loot_message	output.c	/^void loot_message(struct Buckeye *brutus)$/;"	f
 main	lab4.c	/^int main(int argc, char *argv[])$/;"	f
-main	p1.c	/^int main() {$/;"	f
-main	p2.c	/^int main(int argc, char *argv[]) {$/;"	f
-main	p2.h	/^int main(int argc, char *argv[]) {;$/;"	f
+main	p1.c	/^int main() $/;"	f
+main	p2.c	/^int main(int argc, char *argv[]) $/;"	f
 main	p3.c	/^int main() $/;"	f
-main	p4.c	/^int main() {$/;"	f
+main	p4.c	/^int main() $/;"	f
 make_adjustments	physics.c	/^static void make_adjustments(struct Buckeye *brutus)$/;"	f	file:
 mascots	structs.h	/^	void *mascots;$/;"	m	struct:Sim
 master_draw	output.c	/^static void master_draw(struct Sim *world)$/;"	f	file:
@@ -128,15 +123,14 @@ next	node.h	/^	struct Node *next;$/;"	m	struct:Node	typeref:struct:Node::Node
 next	p1.c	/^    struct Thing *next;$/;"	m	struct:Thing	typeref:struct:Thing::Thing	file:
 next	p3.c	/^    struct Thing *next;$/;"	m	struct:Thing	typeref:struct:Thing::Thing	file:
 next	p4.c	/^    struct Thing *next;$/;"	m	struct:Thing	typeref:struct:Thing::Thing	file:
-nodeCount	linkedlist.c	/^static int nodeCount = 0;$/;"	v	file:
 output_bad_bits	output.c	/^void output_bad_bits(unsigned short code)$/;"	f
 output_scanf	output.c	/^void output_scanf(int tokens)$/;"	f
-printList	p1.c	/^void printList(struct Thing* head) {$/;"	f
+printList	p1.c	/^void printList(struct Thing* head) $/;"	f
 printList	p3.c	/^void printList(struct Thing* head) $/;"	f
 print_brutus	output.c	/^static void print_brutus (void * data)$/;"	f	file:
 print_coin	output.c	/^static void print_coin (void * data)$/;"	f	file:
 run_sim	sim.c	/^void run_sim(struct Sim *world)$/;"	f
-sort	linkedlist.c	/^void sort(void **hptr, ComparisonFunction cf) $/;"	f
+sort	linkedlist.c	/^void sort(void *hptr, ComparisonFunction cf)$/;"	f
 sort	p3.c	/^void sort(struct Thing **head, ComparisonFunction cf) $/;"	f
 std	makefile	/^	gcc -std=c99 -pedantic -Wformat -Wreturn-type -g -c p4.c -o p4.o$/;"	m
 str	p3.c	/^    char* str;$/;"	m	struct:Thing	file:

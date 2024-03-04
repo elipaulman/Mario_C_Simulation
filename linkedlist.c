@@ -5,55 +5,53 @@
 #include <stdbool.h>
 
 #include "debug.h"
+#include "altmem.h"
 #include "linkedlist.h"
 
-typedef struct Node 
+typedef struct Node
 {
     struct Node *next;
     void *data;
 } Node;
 
-static int nodeCount = 0;
-static int freedCount = 0;
-
 // creates a new node
 static Node* allocate_node(void *data, int text) 
 {
-    Node *newNode = (Node*)malloc(sizeof(Node));
+    Node *newNode = (Node*)alternative_malloc(sizeof(Node)); 
+    static int nodeCount = 0; 
     if(newNode == NULL) 
     {
-        if(text)printf("DIAGNOSTIC: Node allocation failed.\n");
+        if(text) printf("DIAGNOSTIC: Node allocation failed.\n");
+        if(DEBUG) printf("DEBUG: linkedlist: allocation failed.\n");
         return NULL;
     }
     newNode->data = data;
     newNode->next = NULL;
-    nodeCount++;
-    if(text)printf("DIAGNOSTIC: %d nodes allocated.\n", nodeCount);
-    if(DEBUG)printf("DEBUG: linkedlist: allocated pointer is %p\n", (void*)newNode);
+    if(text) printf("DIAGNOSTIC: %d nodes allocated.\n", ++nodeCount); 
+    if(DEBUG) printf("DEBUG: linkedlist: allocated pointer is %p\n", (void*)newNode);
     return newNode;
 }
 
 // frees a node
 static void free_node(Node *node, int text) 
 {
-    if(DEBUG)printf("DEBUG: linkedlist: about to free %p\n", (void*)node);
-    free(node);
-    nodeCount--;
-    freedCount++;
-    if(text)printf("DIAGNOSTIC: %d nodes freed.\n", freedCount);
+    static int nodeCount = 0; 
+    alternative_free(node);
+    if(text) printf("DIAGNOSTIC: %d nodes freed.\n", ++nodeCount); 
 }
 
 // inserts a new node into the linked list
-bool insert(void **p2head, void *data, ComparisonFunction goesInFrontOf, int text) 
+bool insert(void *p2head, void *data, ComparisonFunction goesInFrontOf, int text)
 {
     Node *newNode = allocate_node(data, text);
     if (newNode == NULL) 
     {
+        //free_node(newNode, text);
         return false;
     }
 
     Node **p2p2change = (Node**)p2head;
-    while(*p2p2change != NULL && (*p2p2change)->data < newNode->data) 
+    while(*p2p2change != NULL && goesInFrontOf((*p2p2change)->data, newNode->data)) 
     {
         p2p2change = &((*p2p2change)->next);
     }
@@ -64,9 +62,9 @@ bool insert(void **p2head, void *data, ComparisonFunction goesInFrontOf, int tex
 }
 
 // iterates over linkedlist and does someNode to each node
-void iterate(void *head, ActionFunction doThis) 
+void iterate(void *head, ActionFunction doThis)
 {
-    Node *current = head;
+    Node *current = (Node*)head;
     while (current != NULL) 
     {
         doThis(current->data);
@@ -75,9 +73,9 @@ void iterate(void *head, ActionFunction doThis)
 }
 
 // checks each node of list and returns true if any node meets the criteria
-bool any(void *head, CriteriaFunction yes, void *helper) 
+bool any(void *head, CriteriaFunction yes, void *helper)
 {
-    Node *current = head;
+    Node *current = (Node*)head;
     while (current != NULL) 
     {
         if (yes(current->data, helper)) 
@@ -90,7 +88,7 @@ bool any(void *head, CriteriaFunction yes, void *helper)
 }
 
 // deletes nodes that meet the criteria
-int deleteSome(void **p2head, CriteriaFunction mustGo, void *helper, ActionFunction disposal, int text) 
+int deleteSome(void *p2head, CriteriaFunction mustGo, void *helper, ActionFunction disposal, int text)
 {
     Node **p2p2change = (Node**)p2head;
     Node *holder;
@@ -115,16 +113,16 @@ int deleteSome(void **p2head, CriteriaFunction mustGo, void *helper, ActionFunct
 }
 
 // sorts the nodes in the linked list
-void sort(void **hptr, ComparisonFunction cf) 
+void sort(void *hptr, ComparisonFunction cf)
 {
     Node *current, *index;
     void *temp;
 
-    for(current = *hptr; current->next != NULL; current = current->next) 
+    for(current = (Node*)hptr; current != NULL && current->next != NULL; current = current->next) 
     {
         for(index = current->next; index != NULL; index = index->next) 
         {
-            if(cf(current->data, index->data)) 
+            if(!cf(current->data, index->data) && current->data != index->data) 
             {
                 temp = current->data;
                 current->data = index->data;

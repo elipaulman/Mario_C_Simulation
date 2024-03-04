@@ -19,7 +19,7 @@ tags: *.c
 	gcc $(CFLAGS) -g -c $< -o $@
 
 
-lab4: lab4.o callbacks.o memory.o bits.o input.o physics.o sim.o output.o n2.o linkedlist.o
+lab4: lab4.o callbacks.o memory.o bits.o input.o physics.o sim.o output.o n2.o linkedlist.o reliable.o
 	gcc -g -o $@ $^  -L. -lbtp -lncurses -lm 
 
 
@@ -42,7 +42,7 @@ p4.o: p4.c
 
 # Zip target goes here.  
 # If it doesn't self test lab4, your lab is late.
-lab4.zip: makefile *.c *.h README_LAB4 n2.o libbtp.a liblinkedlist.a
+lab4.zip: makefile *.c *.h README_LAB4 n2.o libbtp.a liblinkedlist.a unreliable.o reliable.o
 	zip $@ $^
 # self test lab4
 	rm -rf install

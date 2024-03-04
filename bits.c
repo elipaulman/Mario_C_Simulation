@@ -1,7 +1,7 @@
 
 
 /* Copyright 2024, Neil Kirby.  Not for disclosure without permission */
-/* Edtied by Elijah Paulman */
+/* Edited by Elijah Paulman */
 
 // put system shared libraries first - they are unlikely to have bugs.
 #include <stdio.h>
@@ -75,7 +75,7 @@ static bool good_parity(unsigned short code)
 	     code = code >> 1;
 	}
 
-	if(DEBUG)printf("    all done: parity wanted 0 got %d\n",x);
+	if(DEBUG)printf("    all done: parity wanted 0 got %d\n\n",x);
 	return x ==0;
 }
 

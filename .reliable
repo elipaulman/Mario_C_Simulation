@@ -1,0 +1,40 @@
+malloc: Count =  1, size = 56.
+malloc: Count =  2, size = 16.
+malloc: Count =  3, size = 24.
+malloc: Count =  4, size = 16.
+malloc: Count =  5, size = 56.
+malloc: Count =  6, size = 16.
+malloc: Count =  7, size = 24.
+malloc: Count =  8, size = 16.
+malloc: Count =  9, size = 56.
+malloc: Count = 10, size = 16.
+malloc: Count = 11, size = 24.
+malloc: Count = 12, size = 16.
+malloc: Count = 13, size = 24.
+malloc: Count = 14, size = 16.
+malloc: Count = 15, size = 24.
+malloc: Count = 16, size = 16.
+malloc: Count = 17, size = 24.
+malloc: Count = 18, size = 16.
+malloc: Count = 19, size = 24.
+malloc: Count = 20, size = 16.
+free: Free count =  1.
+free: Free count =  2.
+free: Free count =  3.
+free: Free count =  4.
+free: Free count =  5.
+free: Free count =  6.
+free: Free count =  7.
+free: Free count =  8.
+free: Free count =  9.
+free: Free count = 10.
+free: Free count = 11.
+free: Free count = 12.
+free: Free count = 13.
+free: Free count = 14.
+free: Free count = 15.
+free: Free count = 16.
+free: Free count = 17.
+free: Free count = 18.
+free: Free count = 19.
+free: Free count = 20.
